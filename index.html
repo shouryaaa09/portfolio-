@@ -1,1 +1,690 @@
-# portfolio-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Brand & Resume - Cyberpunk Portfolio">
+    <title>Shourya Shrivastava | Developer & Entrepreneur</title>
+    
+    <style>
+        /* ===== CYBERPUNK COLOR SCHEME ===== */
+        :root {
+            --neon-pink: #FF3D94;
+            --neon-purple: #A42DB4;
+            --electric-blue: #00CCFF;
+            --cyber-yellow: #FFCC00;
+            --neon-green: #00FFAA;
+            --deep-purple: #210B4B;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(26, 10, 40, 0.8);
+        }
+
+        /* ===== GLOBAL RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== ANIMATED GRADIENT BACKGROUND ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                var(--deep-purple) 0%, 
+                #1a0a28 25%, 
+                #0a1a2e 50%, 
+                #1a0a28 75%, 
+                var(--deep-purple) 100%);
+            background-size: 400% 400%;
+            animation: dreamyGradient 15s ease infinite;
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 61, 148, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 204, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(164, 45, 180, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: floatBubbles 20s ease infinite;
+        }
+
+        @keyframes dreamyGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes floatBubbles {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ===== HEADER/HERO SECTION ===== */
+        header {
+            text-align: center;
+            padding: 100px 20px 60px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: neonPulse 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 61, 148, 0.5);
+        }
+
+        @keyframes neonPulse {
+            0%, 100% { opacity: 1; filter: brightness(1); }
+            50% { opacity: 0.8; filter: brightness(1.2); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--electric-blue);
+            text-shadow: 0 0 10px var(--electric-blue);
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 30px auto;
+            border: 4px solid var(--neon-pink);
+            box-shadow: 
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-purple),
+                inset 0 0 20px rgba(255, 61, 148, 0.2);
+            animation: profileGlow 2s ease-in-out infinite;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--neon-purple), var(--deep-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        @keyframes profileGlow {
+            0%, 100% { box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-purple); }
+            50% { box-shadow: 0 0 40px var(--neon-pink), 0 0 60px var(--electric-blue); }
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--neon-purple);
+            box-shadow: 0 5px 20px rgba(164, 45, 180, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            margin: 60px auto;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 61, 148, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--electric-blue), var(--neon-purple), var(--neon-green));
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        section:hover::before {
+            opacity: 0.3;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, var(--electric-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue));
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .highlight {
+            color: var(--neon-pink);
+            font-weight: 600;
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+
+        /* ===== SKILLS TABLE ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(10, 10, 10, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--neon-purple), var(--deep-purple));
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 61, 148, 0.1);
+        }
+
+        th {
+            color: var(--neon-pink);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        tr:hover {
+            background: rgba(255, 61, 148, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue));
+            box-shadow: 0 0 10px var(--electric-blue);
+            border-radius: 10px;
+            animation: skillLoad 1.5s ease-out;
+        }
+
+        @keyframes skillLoad {
+            from { width: 0; }
+        }
+
+        /* ===== LISTS ===== */
+        .experience-list, .achievement-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-list li, .achievement-list li {
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(0, 204, 255, 0.05);
+            border-left: 4px solid var(--electric-blue);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-list li:hover, .achievement-list li:hover {
+            transform: translateX(10px);
+            background: rgba(0, 204, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 204, 255, 0.2);
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            color: var(--neon-pink);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .experience-date {
+            color: var(--cyber-yellow);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        /* ===== SOCIAL LINKS ===== */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--deep-purple));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid var(--neon-pink);
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 61, 148, 0.3);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 61, 148, 0.5);
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            border-color: var(--electric-blue);
+        }
+
+        /* ===== CTA BUTTON ===== */
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: transparent;
+            color: var(--neon-pink);
+            border: 3px solid var(--neon-pink);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 61, 148, 0.5);
+            animation: btnGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes btnGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 61, 148, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(255, 61, 148, 0.8), 0 0 60px rgba(0, 204, 255, 0.5); }
+        }
+
+        .cta-button:hover {
+            background: var(--neon-pink);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--neon-pink);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(10, 10, 10, 0.9);
+            border-top: 2px solid var(--neon-purple);
+            margin-top: 60px;
+        }
+
+        footer p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 25px;
+                margin: 40px auto;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-btn {
+                width: 80%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            header {
+                padding: 60px 15px 40px;
+            }
+
+            section {
+                padding: 20px;
+            }
+        }
+
+        /* ===== SCROLL ANIMATION ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER/HERO -->
+    <header>
+        <div class="container">
+            <!-- Replace with your actual image: <img src="https://raw.githubusercontent.com/shouryaaa09/portfolio-/refs/heads/main/Screenshot%202025-11-02%20231240.png" alt="Shaurya Shrivastava" class="profile-image"> -->
+            <div class="profile-image"> <img src="https://raw.githubusercontent.com/shouryaaa09/portfolio-/refs/heads/main/Screenshot%202025-11-02%20231240.png" alt="Shaurya Shrivastava" class="profile-image"></div>
+            <h1 class="hero-title">Shaurya Shrivastava</h1>
+            <p class="hero-subtitle">Developer • Entrepreneur • Innovator</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>
+                    <span class="highlight">Hii its me shourya!</span> I'm a passionate developer and VITB student, building innovative web applications that make a difference. With expertise in 
+                    modern technologies and a drive for creating impactful solutions, I transform ideas into reality.
+                </p>
+                <p>
+                    born and brought up in <span class="highlight">Sagar, Madhya Pradesh</span> my hobbies are 
+                    <span class="highlight">whatching documentary, exploring cities</span>. I thrive on solving complex challenges 
+                    and crafting seamless user experiences that resonate with people.
+                </p>
+                <p>
+                    When I’m not coding, you’ll probably find me exploring new tech trends, brainstorming startup ideas, or diving into creative problem-solving challenges. I believe in continuous learning and in the power of innovation to shape the future.
+                </p>
+            </div>
+        </section>
+
+        <!-- SKILLS TABLE -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Technology</th>
+                        <th>Category</th>
+                        <th>Proficiency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>JavaScript / TypeScript</strong></td>
+                        <td>Programming Language</td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>React / Next.js</strong></td>
+                        <td>Frontend Framework</td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Node.js / Express</strong></td>
+                        <td>Backend Development</td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supabase / Firebase</strong></td>
+                        <td>Database & Backend</td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>HTML5 / CSS3</strong></td>
+                        <td>Web Fundamentals</td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Git / GitHub</strong></td>
+                        <td>Version Control</td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- EXPERIENCE SECTION WITH LISTS -->
+        <section id="experience">
+            <h2>Experience & Projects</h2>
+            <ul class="experience-list">
+                <li>
+                    
+                    <div class="experience-title">💪 EffortConnect - Community App</div>
+                    <div class="experience-date">2024 - Present</div>
+                    <p>
+                        Created a community-driven application connecting gig workers with people. Implemented 
+                        admin dashboards, user authentication, and profile management with responsive design.
+                    </p>
+                </li>
+                <li>
+                    <div class="experience-title">🎯 Full-Stack Web Development</div>
+                    <div class="experience-date">2023 - Present</div>
+                    <p>
+                        Specialized in building scalable web applications using modern JavaScript frameworks, 
+                        RESTful APIs, and cloud-based backend solutions. Focus on performance optimization 
+                        and user experience.
+                    </p>
+                   
+            </ul>
+        </section>
+
+        <!-- ACHIEVEMENTS -->
+        <section id="achievements">
+            <h2>Key Achievements</h2>
+            <ul class="achievement-list">
+                <li>✨ Successfully launched multiple production-ready web applications</li>
+                <li>🏆 Integrated complex APIs including Strava and MapMyIndia for real-time data</li>
+                <li>🎨 Designed and implemented user-centric UI/UX across various platforms</li>
+                <li>📱 Built Progressive Web Apps (PWAs) with offline capabilities</li>
+                <li>⚡ Optimized application performance achieving 90+ Lighthouse scores</li>
+                <li>🤝 Managed end-to-end product development from concept to deployment</li>
+            </ul>
+        </section>
+
+        <!-- CONTACT & SOCIAL LINKS -->
+        <section id="contact">
+            <h2>Let's Connect</h2>
+            <div class="about-content" style="text-align: center; margin-bottom: 30px;">
+                <p>
+                    Shauryashrivastava2022@vitbhopal.ac.in
+                </p>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://github.com/shouryaaa09" target="_blank" class="social-btn">
+                    <span>💻</span> GitHub
+                </a>
+                <a href="https://linkedin.com/in/shourya-shrivastava-622142253" target="_blank" class="social-btn">
+                    <span>💼</span> LinkedIn
+                </a>
+                <a href="https://wa.link/lprpz1" target="_blank" class="social-btn">
+                    <span>📲</span> Whatsapp
+                </a>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="cta-button">Download Resume</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Shaurya Shrivastava. All rights reserved. </p>
+        </div>
+    </footer>
+
+</body>
+</html>
